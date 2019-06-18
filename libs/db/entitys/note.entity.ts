@@ -37,7 +37,7 @@ export class Note {
     // 多对多
     @ManyToMany(type => Label, label => label.articles)
     @JoinTable({
-        name: 'article_label'
+        name: 'note_label'
     })
     labels: Label[];
 
