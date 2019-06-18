@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany } from 'typeorm';
-import { Article } from './article.entity';
+import { Note } from './note.entity';
 
 /**
  * 文章标签
@@ -28,7 +28,12 @@ export class Label {
     })
     update_time: Date;
 
+<<<<<<< HEAD
     @ManyToMany(type => Article, article => article.labels)
     articles: Article[];
+=======
+      @ManyToMany(type=>Note,note=>note.labels)
+      articles:Note[];
+>>>>>>> b645dc8ccaa0c3c9e7ef54682461be2939bf813e
 
 }

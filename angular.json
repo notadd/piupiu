@@ -60,6 +60,64 @@
           }
         }
       }
+    },
+    "magnus": {
+      "root": "apps/magnus",
+      "sourceRoot": "apps/magnus/src",
+      "projectType": "application",
+      "prefix": "magnus",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/magnus",
+            "main": "apps/magnus/src/main.ts",
+            "tsConfig": "apps/magnus/tsconfig.app.json",
+            "assets": [
+              "apps/magnus/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/magnus/src/environments/environment.ts",
+                  "with": "apps/magnus/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "magnus:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/magnus/tsconfig.app.json",
+              "apps/magnus/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/magnus/jest.config.js",
+            "tsConfig": "apps/magnus/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -4,12 +4,12 @@ import { Label } from './label.entity';
  * 文章
  */
 @Entity({
-    name: 'article'
+    name: 'note'
 })
-export class Article {
+export class Note {
 
     @PrimaryGeneratedColumn()
-    article_id: number;
+    note_id: number;
 
     @Column({
         type: 'varchar',
