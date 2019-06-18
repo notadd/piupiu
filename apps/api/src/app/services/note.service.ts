@@ -3,44 +3,41 @@ import { Injectable } from '@nestjs/common';
 import { Note } from '@magnus/db';
 @Injectable()
 export class NoteService {
-    constructor(
-        public readonly client: MagnusClient
-    ) { }
-        /**
-         * 添加笔记
-         */
-    async NoteSave(note:Note):Promise<Note>{
-        return await this.client.mutate({
-            mutation:gql`
-             mutation NoteSave($entity:NoteInput!,$options:SaveOptions){
-               noteSave(entity:$entity,options:$options){
-                 note_id,
-                 title,
-                 content,
-                 create_time,
-                 update_time,
-                 labels{
-                    label_id,
-                    name,
-                    create_time,
-                    update_time
-      
-    }
-  }
-}
+	constructor(
+		public readonly client: MagnusClient
+	) { }
+
+	/**
+	 * 添加笔记
+	 */
+	async NoteSave(note: Note): Promise<Note> {
+		return await this.client.mutate({
+			mutation: gql`
+            mutation NoteSave($entity:NoteInput!,$options:SaveOptions){
+                noteSave(entity:$entity,options:$options){
+                	note_id,
+                 	title,
+                 	content,
+                 	create_time,
+                 	update_time,
+                 	labels{
+						label_id,
+						name,
+						create_time,
+						update_time
+           		 	}
+         	 	}
+        	}
             `,
-            variables:{
-                "entity":{
-                    "title":" title",
-                    "content":"content",
-                    "labels": [{
-                      "name": " name"
-                      
-                    }]
-                  }
-            }
-        })
-    }
+			variables: {
+				"entity": {
+					"title": note.title,
+					"content": note.content,
+					"labels": [note.labels]
+				}
+			}
+		})
+	}
 
 
 

@@ -28,7 +28,7 @@ export class Label {
     })
     update_time: Date;
 
-      @ManyToMany(type=>Note,note=>note.labels)
-      notes:Note[];
+    @ManyToMany(type=>Note,note=>note.labels)
+    notes:Note[];
 
 }
