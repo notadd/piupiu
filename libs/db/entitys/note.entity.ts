@@ -35,7 +35,7 @@ export class Note {
     update_time: Date;
 
     // 多对多
-    @ManyToMany(type => Label, label => label.articles)
+    @ManyToMany(type => Label, label => label.notes)
     @JoinTable({
         name: 'note_label'
     })
