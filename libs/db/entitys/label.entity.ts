@@ -28,12 +28,7 @@ export class Label {
     })
     update_time: Date;
 
-<<<<<<< HEAD
-    @ManyToMany(type => Article, article => article.labels)
-    articles: Article[];
-=======
       @ManyToMany(type=>Note,note=>note.labels)
       articles:Note[];
->>>>>>> b645dc8ccaa0c3c9e7ef54682461be2939bf813e
 
 }
