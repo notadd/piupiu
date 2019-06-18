@@ -34,4 +34,31 @@ export class LabelService {
         })
         return result.data;
     }
+    /**
+     * 
+     * @param label 查询所有标签
+     */
+    async LabelFind(label: Label): Promise<Label> {
+        const result = await this.client.query({
+            query: gql`
+              query LabelFInd($options:LabelFindManyOptions!){
+                labelFind(options:$options){
+                data{
+                label_id,
+                name,
+                create_time,
+                update_time
+                }
+            }
+            }
+            `,
+            variables: {
+                "options": {
+                    
+                }
+            }
+        })
+        return result.data;
+    }
+
 }

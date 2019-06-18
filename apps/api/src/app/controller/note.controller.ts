@@ -12,7 +12,7 @@ export class NoteController {
 
     @Post('save')
     async NoteSave(@Body() note: Note): Promise<any> {
-        console.log(note)
+       // console.log(note)
         return await this.noteService.NoteSave(note);
     }
 }
