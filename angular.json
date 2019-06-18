@@ -95,7 +95,8 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "magnus:build"
+            "buildTarget": "magnus:build",
+            "inspect": false
           }
         },
         "lint": {
