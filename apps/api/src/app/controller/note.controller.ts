@@ -11,7 +11,23 @@ export class NoteController {
     ) { }
 
     @Post('save')
-    async NoteSave(@Body() note: Note): Promise<any> {
+    async NoteSave(@Body() note: Note): Promise<Note> {
+        for(let label of note.labels) {
+            const res = await this.labelService.findLabelByName(label.name);
+            console.log(res)
+            if (res) {
+                console.log('-------')
+                label = undefined;
+            } 
+        }
+
+        // note.labels.forEach(label => {
+        //     const res = this.labelService.findLabelByName(label.name);
+        //     console.log(res)
+        //     if (res) {
+        //         label.name = null;
+        //     }
+        // })
         console.log(note)
         return await this.noteService.NoteSave(note);
     }

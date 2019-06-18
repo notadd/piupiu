@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, ManyToMany, Unique } from 'typeorm';
 import { Note } from './note.entity';
 
 /**
@@ -15,9 +15,10 @@ export class Label {
     @Column({
         type: 'varchar',
         length: 20,
-        comment: '标签名字'
+        comment: '标签名字',
     })
     name: string;
+
     @CreateDateColumn({
         type: 'timestamptz'
     })

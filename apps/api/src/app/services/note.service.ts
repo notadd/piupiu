@@ -1,6 +1,7 @@
 import { MagnusClient, gql } from '@notadd/magnus-client';
 import { Injectable } from '@nestjs/common';
 import { Note } from '@magnus/db';
+
 @Injectable()
 export class NoteService {
 	constructor(
@@ -33,7 +34,7 @@ export class NoteService {
 				"entity": {
 					"title": note.title,
 					"content": note.content,
-					"labels": [note.labels]
+					"labels": note.labels
 				}
 			}
 		})

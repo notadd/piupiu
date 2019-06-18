@@ -18,9 +18,7 @@ export class LabelService {
             query findLabelByName($options: LabelFindOneOptions!){
                 labelFindOne(options: $options){
                     label_id,
-                    name,
-                    create_time,
-                    update_time
+                    name
                 }
             }
             `,
@@ -32,6 +30,7 @@ export class LabelService {
                 }
             }
         })
-        return result.data;
+        debugger
+        return result.data.labelFindOne;
     }
 }

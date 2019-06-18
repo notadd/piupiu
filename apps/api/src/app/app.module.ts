@@ -4,17 +4,19 @@ import { AppService } from './app.service';
 import { MagnusClientModule } from './magnusClient';
 import { NoteController } from './controller/note.controller';
 import { NoteService } from './services/note.service';
+import { LabelService } from './services/label.service';
 @Module({
   imports: [
     MagnusClientModule.forRoot(__dirname)
   ],
   controllers: [
     AppController,
-    NoteController
+    NoteController,
   ],
   providers: [
     AppService,
-    NoteService
+    NoteService,
+    LabelService
   ],
 })
 export class AppModule { }
