@@ -29,6 +29,6 @@ export class Label {
     update_time: Date;
 
       @ManyToMany(type=>Note,note=>note.labels)
-      articles:Note[];
+      notes:Note[];
 
 }
