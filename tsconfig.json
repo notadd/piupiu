@@ -15,7 +15,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@magnus/db": ["libs/db/index.ts"],
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
