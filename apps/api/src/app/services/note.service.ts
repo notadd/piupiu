@@ -6,12 +6,12 @@ export class NoteService {
     constructor(
         public readonly client: MagnusClient
     ) { }
-        /**
-         * 添加笔记
-         */
-    async NoteSave(note:Note):Promise<Note>{
+    /**
+     * 添加笔记
+     */
+    async NoteSave(note: Note): Promise<Note> {
         return await this.client.mutate({
-            mutation:gql`
+            mutation: gql`
              mutation NoteSave($entity:NoteInput!,$options:SaveOptions){
                noteSave(entity:$entity,options:$options){
                  note_id,
@@ -29,17 +29,16 @@ export class NoteService {
   }
 }
             `,
-            variables:{
-                "entity":{
-                    "title":" title",
-                    "content":"content",
-                    "labels": [{
-                      "name": " name"
-                      
-                    }]
-                  }
+            variables: {
+                "entity": {
+                    "title": note.title,
+                    "content": note.content,
+                    "labels": note.labels
+                }
             }
         })
+
+        
     }
 
 
