@@ -48,11 +48,11 @@ export class LabelService {
                 update_time
                 }
             }
-            }
+        }
             `,
             variables: {
                 "options": {
-                    
+
                 }
             }
         })
