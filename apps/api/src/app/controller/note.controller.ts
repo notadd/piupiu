@@ -2,6 +2,7 @@ import { Controller, Inject, Body, Post, Param, Delete } from '@nestjs/common';
 import { NoteService } from '../services/note.service';
 import { Note, Label } from '@magnus/db';
 import { LabelService } from '../services/label.service';
+import { DeleteResult } from 'typeorm';
 
 @Controller('note')
 export class NoteController {
@@ -26,12 +27,12 @@ export class NoteController {
     }
 
     @Post('query')
-    async findOneNote(@Body() body: {note_id: number}):Promise<any>{
+    async findOneNote(@Body() body: {note_id: number}):Promise<Note>{
         console.log(body)
         return await this.noteService.findOneNote(body);
     }
     @Delete(':note_id')
-    async deleteNote(@Param('note_id') body:{note_id:number}):Promise<any>{
+    async deleteNote(@Param('note_id') body:{note_id:number}):Promise<DeleteResult>{
         return await this.noteService.deleteNote(body);
     }
 }
