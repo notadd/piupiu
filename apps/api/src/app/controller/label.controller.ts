@@ -1,6 +1,5 @@
 import { Controller } from '@nestjs/common';
 
-@Controller()
+@Controller('label')
 export class LabelController {
-    
 }
