@@ -39,6 +39,36 @@ export class NoteService {
 			}
 		})
 	}
-
+	/**
+	 * 
+	 * @param where 根据笔记id查询
+	 */
+	async NoteFindOne(where: Partial<Note>): Promise<Note> {
+		const result = await this.client.query({
+			query: gql`
+			query NoteFindOne($options:NoteFindOneOptions!){
+  			    noteFindOne(options:$options){
+    				 note_id,
+                     title,
+                     content,
+                     create_time,
+    				 update_time,
+    				 labels{
+                         label_id,
+                         name
+        }
+    }
 }
-
+			`,
+			variables:{
+				"options": {
+					"where": {
+					  "note_id": where.note_id
+					}
+			}
+		}
+		});
+		return result.data;
+	
+	}
+}

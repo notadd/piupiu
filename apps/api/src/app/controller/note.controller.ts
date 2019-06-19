@@ -31,4 +31,8 @@ export class NoteController {
         console.log(note)
         return await this.noteService.NoteSave(note);
     }
+    @Post(':note_id')
+    async NoteFineOne(@Body() body:{note_id:number}):Promise<any>{
+        return await this.noteService.NoteFindOne(body);
+    }
 }
