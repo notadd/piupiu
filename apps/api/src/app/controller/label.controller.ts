@@ -1,7 +1,6 @@
-import { Controller, Inject, Get, Param } from '@nestjs/common';
-import { LabelService } from '../services/label.service';
 import { Label } from '@magnus/db';
-
+import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { LabelService } from '../services/label.service';
 @Controller('label')
 export class LabelController {
     constructor(
@@ -15,7 +14,13 @@ export class LabelController {
     }
 
     @Get()
-    async findAllLabel(): Promise<Label> {
+    async findAllLabel(): Promise<Label[]> {
         return await this.labelService.findLabel();
+    }
+
+    // 根据id查询标签及其所有笔记
+    @Post('find')
+    async findLabel(@Body() body: { label_id: number }): Promise<Label> {
+        return await this.labelService.findLabelById(body);
     }
 }

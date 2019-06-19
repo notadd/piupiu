@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { MagnusClient, gql } from '@notadd/magnus-client';
 import { Label } from '@magnus/db';
+import { Injectable } from '@nestjs/common';
+import { gql, MagnusClient } from '@notadd/magnus-client';
 
 @Injectable()
 export class LabelService {
@@ -53,10 +53,9 @@ export class LabelService {
     }
 
     /**
-     * 
-     * @param label 根据条件查询批量标签
+     * @param label 查询所有标签
      */
-    async findLabel(): Promise<Label> {
+    async findLabel(): Promise<Label[]> {
         const result = await this.client.query({
             query: gql`
             query LabelFInd($options:LabelFindManyOptions!){
@@ -67,15 +66,41 @@ export class LabelService {
             }}
             `,
             variables: {
-                "options": {
-
-                }
+                "options": {}
             }
         })
         return result.data;
     }
+
     /**
-     * 
+     * 根据标签id查询对应的笔记
+     */
+    async findLabelById(where: Partial<Label>): Promise<Label> {
+        try {
+            const label = await this.client.query({
+                query: gql`
+                query findLabelById($options: LabelFindOneOptions!){
+                    labelFindOne(options: $options){
+                        label_id, name, create_time, update_time, notes {
+                            note_id, title, content, create_time, update_time
+                        }
+                     }
+                }`,
+                variables: {
+                    "options": {
+                        "where": {
+                            "label_id": where.label_id
+                        }
+                    }
+                }
+            })
+            return label.data.labelFindOne;
+        } catch{
+            return null;
+        }
+    }
+
+    /**
      * @param where 根据标签id删除
      */
     async deleteLabel(where: Partial<Label>): Promise<Label> {

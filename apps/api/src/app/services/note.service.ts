@@ -1,8 +1,8 @@
-import { MagnusClient, gql } from '@notadd/magnus-client';
-import { Injectable } from '@nestjs/common';
 import { Note } from '@magnus/db';
-import { LabelService } from './label.service';
+import { Injectable } from '@nestjs/common';
+import { gql, MagnusClient } from '@notadd/magnus-client';
 import { DeleteResult } from 'typeorm';
+import { LabelService } from './label.service';
 
 @Injectable()
 export class NoteService {
