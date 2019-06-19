@@ -31,8 +31,7 @@ export class LabelService {
             query: gql`
             query labelFindOne($options: LabelFindOneOptions!){
                 labelFindOne(options: $options){
-                    label_id,
-                    name
+                    label_id, name
                 }
             }
             `,
@@ -51,19 +50,16 @@ export class LabelService {
      * 
      * @param label 查询所有标签
      */
-    async LabelFind(label: Label): Promise<Label> {
+    async labelFind(label: Label): Promise<Label> {
         const result = await this.client.query({
             query: gql`
               query LabelFInd($options:LabelFindManyOptions!){
                 labelFind(options:$options){
                 data{
-                label_id,
-                name,
-                create_time,
-                update_time
-                }
-            }
-        }
+                label_id, name, create_time,update_time
+             }
+         }
+     }
             `,
             variables: {
                 "options": {
@@ -73,5 +69,20 @@ export class LabelService {
         })
         return result.data;
     }
-
+    /**
+     * 
+     * @param where 根据标签id删除
+     */
+    async labelDelete(where:Partial<Label>):Promise<Label>{
+        return await this.client.mutate({
+            mutation:gql`
+            mutation LabelDelete($where:LabelFindConditions!){
+             labelDelete(where:$where){
+                 affected
+  }
+  
+}
+            `,
+        })
+    }
 }

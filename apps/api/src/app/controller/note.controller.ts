@@ -28,7 +28,7 @@ export class NoteController {
         return await this.noteService.NoteFindOne(body);
     }
     @Delete(':note_id')
-    async NoteDelete(@Param('note_id') note_id:number):Promise<any>{
+    async noteDelete(@Param('note_id') note_id:number):Promise<any>{
         return await this.noteService.NoteDelete({note_id});
     }
 }
