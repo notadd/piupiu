@@ -43,13 +43,13 @@ export class LabelService {
                 }
             }
         })
-        // if (result.data.labelFindOne) {
-        //     const label = new Label();
-        //     label.label_id = result.data.labelFindOne.label_id;
-        //     label.name = result.data.labelFindOne.name;
-        //     return label;
-        // }
-        return result.data.labelFindOne;
+        if (result.data.labelFindOne) {
+            const label = new Label();
+            label.label_id = result.data.labelFindOne.label_id;
+            label.name = result.data.labelFindOne.name;
+            return label;
+        }
+        return null;
     }
 
     /**
@@ -59,13 +59,12 @@ export class LabelService {
     async labelFind(label: Label): Promise<Label> {
         const result = await this.client.query({
             query: gql`
-              query LabelFInd($options:LabelFindManyOptions!){
+            query LabelFInd($options:LabelFindManyOptions!){
                 labelFind(options:$options){
                 data{
-                label_id, name, create_time,update_time
-             }
-         }
-     }
+                    label_id, name, create_time,update_time
+                }
+            }}
             `,
             variables: {
                 "options": {
@@ -79,16 +78,16 @@ export class LabelService {
      * 
      * @param where 根据标签id删除
      */
-    async labelDelete(where:Partial<Label>):Promise<Label>{
+    async labelDelete(where: Partial<Label>): Promise<Label> {
         return await this.client.mutate({
-            mutation:gql`
+            mutation: gql`
             mutation LabelDelete($where:LabelFindConditions!){
-             labelDelete(where:$where){
-                 affected
-  }
-  
-}
+                labelDelete(where:$where){
+                    affected
+                }
+            }
             `,
         })
     }
+
 }
