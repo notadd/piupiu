@@ -9,14 +9,14 @@ export class LabelService {
     ) { }
 
     /**
-     * 检查数组中的标记在是否已经存在,如果存在就从数组中移除
+     * 检查数组中的标记在是否已存在,如存在就关联不再添加
      * @param labels 
      */
     async inspectLabel(labels: Label[]): Promise<Label[]> {
         for (let i = 0; i < labels.length; i++) {
             const res = await this.findLabelByName(labels[i].name);
             if (res) {
-                labels.splice(i);
+                labels[i] = res;
             }
         }
         return labels;
@@ -31,8 +31,7 @@ export class LabelService {
             query: gql`
             query labelFindOne($options: LabelFindOneOptions!){
                 labelFindOne(options: $options){
-                    label_id,
-                    name
+                    label_id, name
                 }
             }
             `,
@@ -44,6 +43,12 @@ export class LabelService {
                 }
             }
         })
+        // if (result.data.labelFindOne) {
+        //     const label = new Label();
+        //     label.label_id = result.data.labelFindOne.label_id;
+        //     label.name = result.data.labelFindOne.name;
+        //     return label;
+        // }
         return result.data.labelFindOne;
     }
 
