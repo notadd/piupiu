@@ -92,11 +92,7 @@ export class NoteService {
 	 * 
 	 * @param where 根据笔记id删除
 	 */
-<<<<<<< HEAD
-	async NoteDelete(where: Partial<Note>): Promise<DeleteResult> {
-=======
 	async noteDelete(where:Partial<Note>):Promise<DeleteResult>{
->>>>>>> 3065799aa216b53c17abef2738f83785300adfd9
 		return await this.client.mutate({
 			mutation: gql`
 				mutation NoteDelete($where:NoteFindConditions!){
