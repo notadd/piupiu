@@ -1,6 +1,7 @@
 import { Label } from '@magnus/db';
 import { Injectable } from '@nestjs/common';
 import { gql, MagnusClient } from '@notadd/magnus-client';
+import { DeleteResult } from 'typeorm';
 
 @Injectable()
 export class LabelService {
@@ -103,7 +104,7 @@ export class LabelService {
     /**
      * @param where 根据标签id删除
      */
-    async deleteLabel(where: Partial<Label>): Promise<Label> {
+    async deleteLabel(where: Partial<Label>): Promise<DeleteResult> {
         return await this.client.mutate({
             mutation: gql`
             mutation LabelDelete($where:LabelFindConditions!){
@@ -112,6 +113,11 @@ export class LabelService {
                 }
             }
             `,
+            variables: {
+                "where": {
+                    "label_id": where.label_id
+                }
+            }
         })
     }
 

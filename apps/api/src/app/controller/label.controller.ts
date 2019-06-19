@@ -1,5 +1,5 @@
 import { Label } from '@magnus/db';
-import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post } from '@nestjs/common';
 import { LabelService } from '../services/label.service';
 @Controller('label')
 export class LabelController {
@@ -22,5 +22,10 @@ export class LabelController {
     @Post('find')
     async findLabel(@Body() body: { label_id: number }): Promise<Label> {
         return await this.labelService.findLabelById(body);
+    }
+
+    @Delete(':label_id')
+    async deleteLabel(@Param('label_id') body: { label_id: number }): Promise<any> {
+        return await this.labelService.deleteLabel(body);
     }
 }
