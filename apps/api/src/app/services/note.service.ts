@@ -72,9 +72,9 @@ export class NoteService {
   			    noteFindOne(options:$options){
     				 note_id,title, content, create_time, update_time
     				 labels{
-                         label_id,name
-                 }
-             }
+                        label_id,name
+                }
+            }
         }
 			`,
 			variables: {

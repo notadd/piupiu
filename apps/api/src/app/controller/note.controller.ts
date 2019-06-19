@@ -3,7 +3,7 @@ import { NoteService } from '../services/note.service';
 import { Note, Label } from '@magnus/db';
 import { LabelService } from '../services/label.service';
 
-@Controller()
+@Controller('note')
 export class NoteController {
     constructor(
         @Inject(NoteService) public readonly noteService: NoteService,
@@ -23,12 +23,13 @@ export class NoteController {
         return await this.noteService.updateNote(note);
     }
 
-    @Post(':note_id')
-    async noteFineOne(@Body() body:{note_id:number}):Promise<any>{
+    @Post('query')
+    async noteFineOne(@Body() body: {note_id: number}):Promise<any>{
+        console.log(body)
         return await this.noteService.noteFindOne(body);
     }
     @Delete(':note_id')
-    async noteDelete(@Param('note_id') note_id:number):Promise<any>{
-        return await this.noteService.noteDelete({note_id});
+    async noteDelete(@Param('note_id') body:{note_id:number}):Promise<any>{
+        return await this.noteService.noteDelete(body);
     }
 }
