@@ -87,6 +87,11 @@ export class LabelService {
                 }
             }
             `,
+            variables:{
+                "where":{
+                    "label_id":where.label_id
+                }
+            }
         })
     }
 
