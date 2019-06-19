@@ -12,7 +12,9 @@ export class NoteController {
 
     @Post('save')
     async noteSave(@Body() note: Note): Promise<Note> {
-        note.labels = await this.labelService.inspectLabel(note.labels);
+        if (note.labels) {
+            note.labels = await this.labelService.inspectLabel(note.labels);
+        }
         console.log(note);
         return await this.noteService.noteSave(note);
     }
