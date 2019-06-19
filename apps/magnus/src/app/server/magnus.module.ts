@@ -13,7 +13,7 @@ import { Module } from '@nestjs/common';
             database: 'magnus',
             synchronize: true,
             entities: entities,
-            logging: true
+            //logging: true
         })
     ]
 })
