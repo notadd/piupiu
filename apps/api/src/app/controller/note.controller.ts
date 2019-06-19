@@ -1,7 +1,7 @@
-import { Controller, Inject, Body, Post, Param, Delete } from '@nestjs/common';
-import { NoteService } from '../services/note.service';
-import { Note, Label } from '@magnus/db';
+import { Note } from '@magnus/db';
+import { Body, Controller, Delete, Inject, Param, Post } from '@nestjs/common';
 import { LabelService } from '../services/label.service';
+import { NoteService } from '../services/note.service';
 import { DeleteResult } from 'typeorm';
 
 @Controller('note')

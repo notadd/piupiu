@@ -1,8 +1,8 @@
-import { MagnusClient, gql } from '@notadd/magnus-client';
-import { Injectable } from '@nestjs/common';
 import { Note } from '@magnus/db';
-import { LabelService } from './label.service';
+import { Injectable } from '@nestjs/common';
+import { gql, MagnusClient } from '@notadd/magnus-client';
 import { DeleteResult } from 'typeorm';
+import { LabelService } from './label.service';
 
 @Injectable()
 export class NoteService {
@@ -92,14 +92,14 @@ export class NoteService {
 	 * 
 	 * @param where 根据笔记id删除
 	 */
-	async deleteNote(where:Partial<Note>):Promise<DeleteResult>{
+	async deleteNote(where: Partial<Note>): Promise<DeleteResult> {
 		return await this.client.mutate({
 			mutation: gql`
 				mutation NoteDelete($where:NoteFindConditions!){
                   noteDelete(where:$where){   
                       affected
-            }
-    }								
+           		 }
+  			  }								
 			`,
 			variables: {
 				"where": {
