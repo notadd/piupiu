@@ -1,4 +1,4 @@
-import { Controller, Inject, Get, Param } from '@nestjs/common';
+import { Controller, Inject, Get, Param, Delete } from '@nestjs/common';
 import { LabelService } from '../services/label.service';
 import { Label } from '@magnus/db';
 
@@ -17,5 +17,9 @@ export class LabelController {
     @Get()
     async findAllLabel(): Promise<Label> {
         return await this.labelService.findLabel();
+    }
+    @Delete(':label_id')
+    async deleteLabel(@Param('label_id') body:{label_id:number}):Promise<any>{
+        return await this.labelService.deleteLabel(body);
     }
 }
