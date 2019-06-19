@@ -14,7 +14,7 @@ export class NoteService {
 	/**
 	 * 添加笔记
 	 */
-	async noteSave(note: Note): Promise<Note> {
+	async saveNote(note: Note): Promise<Note> {
 		return await this.client.mutate({
 			mutation: gql`
             mutation NoteSave($entity:NoteInput!,$options:SaveOptions){
@@ -65,7 +65,7 @@ export class NoteService {
 	/**
 	 * @param where 根据笔记id查询
 	 */
-	async noteFindOne(where: Partial<Note>): Promise<Note> {
+	async findOneNote(where: Partial<Note>): Promise<Note> {
 		const result = await this.client.query({
 			query: gql`
 			query NoteFindOne($options:NoteFindOneOptions!){
@@ -92,7 +92,7 @@ export class NoteService {
 	 * 
 	 * @param where 根据笔记id删除
 	 */
-	async noteDelete(where:Partial<Note>):Promise<DeleteResult>{
+	async deleteNote(where:Partial<Note>):Promise<DeleteResult>{
 		return await this.client.mutate({
 			mutation: gql`
 				mutation NoteDelete($where:NoteFindConditions!){
