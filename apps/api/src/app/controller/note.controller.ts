@@ -20,15 +20,15 @@ export class NoteController {
             }
         }
         console.log(note)
-        return await this.noteService.NoteSave(note);
+        return await this.noteService.noteSave(note);
     }
     
     @Post(':note_id')
     async noteFineOne(@Body() body:{note_id:number}):Promise<any>{
-        return await this.noteService.NoteFindOne(body);
+        return await this.noteService.noteFindOne(body);
     }
     @Delete(':note_id')
     async noteDelete(@Param('note_id') note_id:number):Promise<any>{
-        return await this.noteService.NoteDelete({note_id});
+        return await this.noteService.noteDelete({note_id});
     }
 }
