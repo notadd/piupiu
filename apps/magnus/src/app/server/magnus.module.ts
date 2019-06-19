@@ -12,7 +12,8 @@ import { Module } from '@nestjs/common';
             password: 'magnus',
             database: 'magnus',
             synchronize: true,
-            entities: entities
+            entities: entities,
+            logging: true
         })
     ]
 })

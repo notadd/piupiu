@@ -8,7 +8,10 @@ import { LabelService } from './services/label.service';
 import { LabelController } from './controller/label.controller';
 @Module({
   imports: [
-    MagnusClientModule.forRoot(__dirname)
+    MagnusClientModule.forRoot(__dirname),
+    // GraphQLModule.forRoot({
+    //   typePaths: ['./**/*.graphql'],
+    // }),
   ],
   controllers: [
     AppController,

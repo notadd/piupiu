@@ -54,9 +54,9 @@ export class LabelService {
 
     /**
      * 
-     * @param label 查询所有标签
+     * @param label 根据条件查询批量标签
      */
-    async labelFind(label: Label): Promise<Label> {
+    async findLabel(): Promise<Label> {
         const result = await this.client.query({
             query: gql`
             query LabelFInd($options:LabelFindManyOptions!){
@@ -78,7 +78,7 @@ export class LabelService {
      * 
      * @param where 根据标签id删除
      */
-    async labelDelete(where: Partial<Label>): Promise<Label> {
+    async deleteLabel(where: Partial<Label>): Promise<Label> {
         return await this.client.mutate({
             mutation: gql`
             mutation LabelDelete($where:LabelFindConditions!){

@@ -13,4 +13,9 @@ export class LabelController {
         const result = await this.labelService.findLabelByName(name);
         return result;
     }
+
+    @Get()
+    async findAllLabel(): Promise<Label> {
+        return await this.labelService.findLabel();
+    }
 }
