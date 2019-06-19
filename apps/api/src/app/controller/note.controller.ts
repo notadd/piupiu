@@ -1,4 +1,4 @@
-import { Controller, Inject, Body, Post } from '@nestjs/common';
+import { Controller, Inject, Body, Post, Param, Delete } from '@nestjs/common';
 import { NoteService } from '../services/note.service';
 import { Note, Label } from '@magnus/db';
 import { LabelService } from '../services/label.service';
@@ -26,5 +26,9 @@ export class NoteController {
     @Post(':note_id')
     async noteFineOne(@Body() body:{note_id:number}):Promise<any>{
         return await this.noteService.NoteFindOne(body);
+    }
+    @Delete(':note_id')
+    async NoteDelete(@Param('note_id') note_id:number):Promise<any>{
+        return await this.noteService.NoteDelete({note_id});
     }
 }
