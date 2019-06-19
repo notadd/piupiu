@@ -30,7 +30,6 @@ export class LabelService {
                 }
             }
         })
-        debugger
         return result.data.labelFindOne;
     }
     /**

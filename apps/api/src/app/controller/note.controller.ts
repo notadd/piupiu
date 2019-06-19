@@ -1,6 +1,6 @@
 import { Controller, Inject, Body, Post } from '@nestjs/common';
 import { NoteService } from '../services/note.service';
-import { Note } from '@magnus/db';
+import { Note, Label } from '@magnus/db';
 import { LabelService } from '../services/label.service';
 
 @Controller()
@@ -12,22 +12,13 @@ export class NoteController {
 
     @Post('save')
     async NoteSave(@Body() note: Note): Promise<Note> {
-        for(let label of note.labels) {
-            const res = await this.labelService.findLabelByName(label.name);
+        for (let i = 0; i < note.labels.length; i++) {
+            const res = await this.labelService.findLabelByName(note.labels[i].name);
             console.log(res)
             if (res) {
-                console.log('-------')
-                label = undefined;
-            } 
+                note.labels.splice(i);
+            }
         }
-
-        // note.labels.forEach(label => {
-        //     const res = this.labelService.findLabelByName(label.name);
-        //     console.log(res)
-        //     if (res) {
-        //         label.name = null;
-        //     }
-        // })
         console.log(note)
         return await this.noteService.NoteSave(note);
     }
