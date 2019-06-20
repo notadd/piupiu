@@ -16,7 +16,6 @@ export class NoteController {
         if (note.labels) {
             note.labels = await this.labelService.inspectLabel(note.labels);
         }
-        console.log(note);
         return await this.noteService.saveNote(note);
     }
 
@@ -28,7 +27,6 @@ export class NoteController {
  
     @Post('query')
     async findOneNote(@Body() body: {note_id: number}):Promise<Note>{
-       // console.log(body)
         return await this.noteService.findOneNote(body);
     }
     @Delete(':note_id')
