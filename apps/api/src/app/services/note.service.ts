@@ -89,8 +89,7 @@ export class NoteService {
 
 	}
 	/**
-	 * 
-	 * @param where 根据笔记id删除
+	 *  根据笔记id删除
 	 */
 	async deleteNote(where: Partial<Note>): Promise<DeleteResult> {
 		return await this.client.mutate({
