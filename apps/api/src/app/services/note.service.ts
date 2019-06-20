@@ -108,5 +108,5 @@ export class NoteService {
 			}
 		})
 
-	}
+	} 
 }

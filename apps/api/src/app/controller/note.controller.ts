@@ -21,14 +21,14 @@ export class NoteController {
     }
 
     @Post('update')
-    async updateNote(@Body() note: Note): Promise<Note> {
+    async updateNote(@Body() note: Note): Promise<Note> {   
         note.labels = await this.labelService.inspectLabel(note.labels);
         return await this.noteService.updateNote(note);
     }
-
+ 
     @Post('query')
     async findOneNote(@Body() body: {note_id: number}):Promise<Note>{
-        console.log(body)
+       // console.log(body)
         return await this.noteService.findOneNote(body);
     }
     @Delete(':note_id')
