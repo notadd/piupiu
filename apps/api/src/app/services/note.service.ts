@@ -44,7 +44,7 @@ export class NoteService {
 			mutation: gql`
             mutation NoteSave($entity:NoteInput!,$options:SaveOptions){
                 noteSave(entity:$entity,options:$options){
-					note_id, title, content, create_time, update_time, 
+					note_id, title, content, ,create_time update_time, 
 					labels{
 						label_id, name, create_time, update_time
            		 	}
@@ -86,7 +86,6 @@ export class NoteService {
 			}
 		});
 		return result.data;
-
 	}
 	/**
 	 *  根据笔记id删除
