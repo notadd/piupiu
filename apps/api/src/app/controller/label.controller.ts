@@ -1,6 +1,7 @@
 import { Label } from '@magnus/db';
 import { Body, Controller, Delete, Get, Inject, Param, Post } from '@nestjs/common';
 import { LabelService } from '../services/label.service';
+
 @Controller('label')
 export class LabelController {
     constructor(

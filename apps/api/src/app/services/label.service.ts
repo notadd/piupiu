@@ -70,7 +70,7 @@ export class LabelService {
                 "options": {}
             }
         })
-        return result.data;
+        return result.data.labelFind;
     }
 
     /**
