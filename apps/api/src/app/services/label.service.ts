@@ -13,7 +13,7 @@ export class LabelService {
      * 检查数组中的标记在是否已存在,如存在就关联不再添加
      * @param labels 
      */
-    async inspectLabel(labels: Label[]): Promise<Label[]> {
+    async inspectLabel(labels: Label[]): Promise<Label[]> { 
         for (let i = 0; i < labels.length; i++) {
             const res = await this.findLabelByName(labels[i].name);
             if (res) {
