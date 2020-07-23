@@ -42,7 +42,7 @@
     "@nestjs/platform-express": "^6.2.4",
     "@notadd/magnus": "^0.0.44",
     "@notadd/magnus-client": "^0.0.32",
-    "@nrwl/angular": "^8.0.0",
+    "@nrwl/angular": "^9.2.0",
     "apollo-cache-inmemory": "^1.6.0",
     "apollo-client": "^2.6.0",
     "apollo-link-error": "^1.1.10",
